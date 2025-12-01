@@ -1,0 +1,24 @@
+name: Lint and Build
+on: [ pull_request, push, workflow_dispatch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+      - name: Setup Node
+        uses: actions/setup-node@main
+        with:
+          node-version: 24
+      - name: Setup Node packages
+        run: npm ci
+      - name: Lint files
+        run: npm run lint
+      - name: Build project
+        run: npm run build
+      - name: Capture main build artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: Main
+          path: dist/angular-placeholder-task/browser
