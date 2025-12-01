@@ -9,7 +9,9 @@
       @if (post.commentsFetched && post.comments) {
         <mat-divider/>
         <div>Comments ({{ post.comments.length }})</div>
-        <div>{{ errorMessage() }}</div>
+        @if (errorMessage()) {
+          <div>{{ errorMessage() }}</div>
+        }
         @for (comment of post.comments; track $index) {
           <app-comment [comment]="comment"/>
         }
@@ -23,7 +25,7 @@
         @if (loading()) {
           <mat-spinner [diameter]="32"/>
         }
-        <button matButton (click)="fetchComments()">Load Comments</button>
+        <button matButton (click)="fetchComments()" [disabled]="loading()">Load Comments</button>
       </div>
     </mat-card-actions>
   }
