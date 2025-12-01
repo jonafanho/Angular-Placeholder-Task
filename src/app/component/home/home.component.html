@@ -1,0 +1,18 @@
+<div class="column gap">
+  <div class="row gap center">
+    <h1 class="spacing">Hello!</h1>
+
+    @if (loading()) {
+      <mat-spinner [diameter]="32"/>
+    }
+
+    <button matButton="filled" (click)="fetchPosts()" [disabled]="loading()">Fetch Posts</button>
+  </div>
+
+  <div>{{ errorMessage() }}</div>
+
+  @for (post of posts(); track $index) {
+    <div>{{ post.title }} {{ post.id }}</div>
+    <div>{{ post.body }}</div>
+  }
+</div>
