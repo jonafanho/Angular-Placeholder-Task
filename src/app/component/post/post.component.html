@@ -1,1 +1,30 @@
-<p>post works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="column gap">
+      {{ post.body }}
+
+      @if (post.commentsFetched && post.comments) {
+        <mat-divider/>
+        <div>Comments ({{ post.comments.length }})</div>
+        <div>{{ errorMessage() }}</div>
+        @for (comment of post.comments; track $index) {
+          <app-comment [comment]="comment"/>
+        }
+      }
+    </div>
+  </mat-card-content>
+
+  @if (!post.commentsFetched) {
+    <mat-card-actions align="end">
+      <div class="row gap">
+        @if (loading()) {
+          <mat-spinner [diameter]="32"/>
+        }
+        <button matButton (click)="fetchComments()">Load Comments</button>
+      </div>
+    </mat-card-actions>
+  }
+</mat-card>
