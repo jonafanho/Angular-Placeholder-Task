@@ -6,6 +6,17 @@ All posts are fetched using a button. This is to ensure that the paginator knows
 
 Comments are fetched by clicking a button on each post. This design decision was made in case there are a lot of comments per post, it will be quite inefficient to fetch all comments on all posts at once. A lot of social media sites only load all comments when the user clicks on the comments button to avoid too much overhead.
 
+## Running Locally
+
+To run the project locally, make sure [Node.js](https://nodejs.org/en/download) is installed (preferably the latest LTS version). Run the following commands to run the local webserver:
+
+```bash
+npm install
+npm run start
+```
+
+By default, the webserver port will be 4200. Open http://localhost:4200/ to access the project.
+
 ## Project Structure
 
 The HTML entry point is in `app.html`. This is simply a wrapper for the rest of the application, containing a padding around the outer edges.
