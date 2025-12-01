@@ -2,6 +2,10 @@
 
 This project fetches a list of posts and comments from [JSONPlaceholder](https://jsonplaceholder.typicode.com). It includes a paginator and asynchronous GET requests.
 
+All posts are fetched using a button. This is to ensure that the paginator knows how many posts there are in total to properly display the number of pages available.
+
+Comments are fetched by clicking a button on each post. This design decision was made in case there are a lot of comments per post, it will be quite inefficient to fetch all comments on all posts at once. A lot of social media sites only load all comments when the user clicks on the comments button to avoid too much overhead.
+
 ## Project Structure
 
 The HTML entry point is in `app.html`. This is simply a wrapper for the rest of the application, containing a padding around the outer edges.
