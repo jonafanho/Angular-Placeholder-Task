@@ -1,0 +1,18 @@
+<div class="column gap">
+  <h1>Hello!</h1>
+
+  <div class="row gap center">
+    <button matButton="filled" (click)="fetchPosts()" [disabled]="loading()">Fetch Posts</button>
+    @if (loading()) {
+      <mat-spinner [diameter]="32"/>
+    }
+    <div class="spacing">{{ errorMessage() }}</div>
+    <!--The exercise specifies 20 posts per page, but here are some more options anyway-->
+    <mat-paginator #paginator [length]="posts().length" [pageSize]="20" [pageSizeOptions]="[5, 10, 20]"
+                   aria-label="Select page"/>
+  </div>
+
+  @for (post of postSubset(paginator); track $index) {
+    <app-post [post]="post"/>
+  }
+</div>
